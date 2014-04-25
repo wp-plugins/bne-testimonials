@@ -11,7 +11,15 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
 
-Adds a Custom Post Type to display Testimonials on your website as a list or slider (flexslider). Each testimonial includes a title, featured image, tagline, website, and message. Available Shortcodes: [bne_testimonials_list] & [bne_testimonials_slider]
+Adds a Custom Post Type to display Testimonials on your website as a list or slider (flexslider). Each testimonial includes a title, featured image, tagline, website, and message and includes a custom taxonomy to build your testimonials into different groups (categories). Supports multiple uses on any page or post. A
+
+Available Shortcodes: [bne_testimonials_list] & [bne_testimonials_slider]. Also includes widget versions of the list and slider display.
+
+= Display your testimonials as a List =
+The list view allows you display your testimonials in a unified format must like an archive blog page. You can specify when elements are now shown and the style of the testimonial photo (featured image). You can also arrange your testimonials based on publish date, name, or random. Set your testimonials into categories to display multiple instances throughout your page.
+
+= Display your testimonials as a Slider =
+The slider version is built using Flexslider.js. Does everything as the list view but as a slideshow using either Fade or Slide transitions. Set your testimonials into categories to display multiple instances throughout your page.
 
 
 == Installation ==
@@ -25,7 +33,7 @@ Adds a Custom Post Type to display Testimonials on your website as a list or sli
 == Frequently Asked Questions ==
 
 = Are there any available filters for developers to expand on this? =
-Yes, there are over 30 available filters to use to change the layout, and to add content above/below the testimonials. Each variation has their own filters. Please review the help page for a list of available filters you could use.
+Yes, there are over 12 available filters to use to change the layout, and to add content above/below the testimonials. Each variation has their own filters. Please review the help page for a list of available filters you could use.
 
 = What options are there for the list and slider shortcodes? =
 You can view all available arguments to add to the shortcodes that changes the default behavior by viewing the help page.
