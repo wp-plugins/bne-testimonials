@@ -8,6 +8,7 @@ Stable tag: 1.6.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
+Adds a Custom Post Type to display Testimonials on your website as a list or slider.
 
 == Description ==
 
