@@ -67,8 +67,8 @@ function bne_testimonials_list_shortcode( $atts ) {
 	
 					// Setup the Post Meta Information 
 					$bne_testimonials_id = get_the_ID();
-					$tagline = get_post_meta( $bne_testimonials_id, 'tagline', true );
-					$website_url = get_post_meta( $bne_testimonials_id, 'website-url', true );
+					$tagline =  sanitize_text_field( get_post_meta( $bne_testimonials_id, 'tagline', true ) );
+					$website_url = esc_url( get_post_meta( $bne_testimonials_id, 'website-url', true ) );
 					
 					// Setup Lightbox
 					$lightbox_url = wp_get_attachment_image_src( get_post_thumbnail_id($bne_testimonials->post->ID), 'large');

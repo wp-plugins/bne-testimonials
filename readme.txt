@@ -3,29 +3,29 @@ Author URI: http://www.bluenotesentertainment.com
 Contributors: bluenotes
 Tags: testimonials, flexslider, feedback, reviews
 Requires at least: 3.7
-Tested up to: 3.9.1
-Stable tag: 1.6.3
+Tested up to: 4.0
+Stable tag: 1.6.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 
-Display testimonials and reviews on any page as a list or slider using shortcodes or provided widgets.
+Display testimonials and reviews on any page as a list or slider using a shortcodes or provided widgets.
 
 
 == Description ==
 
-Adds a new Post Type to display Testimonials on your website as a list or slider (flexslider). Each testimonial includes a title, featured image, tagline, website, and message and includes a custom taxonomy to build your testimonials into different groups (categories). Supports multiple uses on any page or post.
+Adds a new Post Type to display Testimonials on your website as a list or slider (flexslider). Each testimonial includes a title, featured image, tagline, website, message, and includes a custom taxonomy to seperate your testimonials into different groups (categories). Supports multiple uses on any page or post.
 
-Available Shortcodes: [bne_testimonials_list] & [bne_testimonials_slider]. Also includes widget versions of the list and slider display.
+Available Shortcodes: [bne_testimonials_list] & [bne_testimonials_slider]. Also includes widget versions of the list and slider display. Want to see a live demo? Check out [website](http://www.bluenotesentertainment.com/products/testimonials-wordpress-pro/ "BNE Testimonials PRO"). You can see how the list and slider displays will look including different image styles. Free version does not include Masonry or form submission. 
 
 = Display your testimonials as a List =
-The list view allows you display your testimonials in a unified format must like an archive blog page. You can specify when elements are now shown and the style of the testimonial photo (featured image). You can also arrange your testimonials based on publish date, name, or random. Set your testimonials into categories to display multiple instances throughout your page.
+The list view allows you display your testimonials in a unified format must like an archive blog page. You can specify when elements are now shown and the style of the testimonial photo (featured image). You can also arrange your testimonials based on publish date, name, or random. Set your testimonials into categories to display multiple instances throughout your page. Use the shortcode [bne_testimonials_list]
 
 = Display your testimonials as a Slider =
-The slider version is built using Flexslider.js. Does everything as the list view but as a slideshow using either Fade or Slide transitions. Set your testimonials into categories to display multiple instances throughout your page.
+The slider version is built using Flexslider.js. Does everything as the list view but as a slideshow using either Fade or Slide transitions. Set your testimonials into categories to display multiple instances throughout your page.  Use the shortcode [bne_testimonials_slider]
 
 = Upgrade to the Pro Version! =
-We have a PRO version of BNE Testimonials on our [website](http://www.bluenotesentertainment.com/products/testimonials-wordpress-pro/ "BNE Testimonials PRO"). The Pro version adds a 3rd view, Masonry, and a front-end user form to submit new testimonials with admin notifications.
+We have a PRO version of BNE Testimonials on our [website](http://www.bluenotesentertainment.com/products/testimonials-wordpress-pro/ "BNE Testimonials PRO"). The Pro version adds a 3rd view, Masonry, and a front-end form to submit new testimonials with admin notifications. In addition, more developer tools, support, and page pagination for list and masonry.
 
 
 
@@ -46,6 +46,17 @@ Yes, there are over 20 available filters to use to change the layout, and to add
 = What options are there for the list and slider shortcodes? =
 You can view all available arguments to add to the shortcodes that changes the default behavior by viewing the help page.
 
+= I can't add a testimonial featured image! =
+99% of the time, if you do not see the featured image box or when you set an image it disappears, it's usually the result your theme only providing post-thumbnail support for a set number of post-types. Or there is another plugin conflicting and causing a JS error within the admin.
+
+= What size are the testimonial featured images? =
+By default, the crop size used is “thumbnail” which is defined on your site from Settings > Media. Usually this will be 150×150 but may be different depending on your website or theme. On the font side, the image will be reduced using CSS to 100×100 to better fit the testimonial format.
+
+= Is there support? =
+Of course, but it is limited. We do not provide customizations or modifications beyond what the plugin currently provides. If you find any bugs or cannot get our plugin to work, please let us know so that we can look into it. Code is never perfect but it is poetry and there is always room for improvement.
+
+= Can you add feature X and Y? =
+Possible, but most likely not in the free version. If you would like to see new features added, check out our [website](http://www.bluenotesentertainment.com/products/testimonials-wordpress-pro/ "PRO version of BNE Testimonials"). Perhaps your wanted featured is already there.
 
 
 == Screenshots ==
@@ -57,6 +68,12 @@ You can view all available arguments to add to the shortcodes that changes the d
 
 
 == Changelog ==
+
+= 1.6.4 (August 27, 2014) =
+* Fix: An issue would arise on the testimonial post list where if an image was placed in the editor the table columns would shift. Changed to using get_the_excerpt here.
+* Add: Sanitize the data output of the website url and tagline fields.
+* Compatibility Check: Works great in WP 4.0
+
 
 = 1.6.3 (May 25, 2014) =
 * Removed html tag limitations on get_the_content. All html tags and styles will now output normally from the visual/text editor.

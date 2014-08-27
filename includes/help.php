@@ -279,6 +279,14 @@ function bne_testimonial_admin_help_page() {
 								
 								<div id="changelog_notes" style="display:none;"><br>
 
+									<strong>August 27, 2014 (1.7.4 Pro)</strong>
+									<ul style="list-style:disc;margin-left:20px;">
+										<li>Fix: An issue would arise on the testimonial post list admin screen. If an image was placed in the editor, the table columns would shift.</li>
+										<li>Add: Sanitize the data output of the website url and tagline fields.</li>
+										<li>Add: Minified the main css file.</li>
+										<li>Compatibility Check: Works great in WP 4.0</li>
+									</ul>
+
 									<strong>May 25, 2014 (v1.6.3)</strong>
 									<ul style="list-style:disc;margin-left:20px;">
 										<li>Removed html tag limitations on get_the_content. All html tags and styles will now output normally from the visual/text editor.</li>

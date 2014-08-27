@@ -1,7 +1,7 @@
 <?php
 /*
  * Plugin Name: BNE Testimonials
- * Version: 1.6.3
+ * Version: 1.6.4
  * Plugin URI: http://www.bluenotesentertainment.com/blog/new-testimonial-plugin-for-wordpress/
  * Description: Adds a Custom Post Type to display Testimonials on any page, post, or sidebar. Display the testimonials as a list or slider powered by Flexslider. Shortcodes: [bne_testimonials_list] & [bne_testimonials_slider]. Includes corresponding widget options.
  * Author: Kerry Kline, Bluenotes Entertainment
@@ -37,7 +37,7 @@ if ( !defined('ABSPATH') ) exit;
  *	Plugin Constants
  * ======================================================== */
 
-define( 'BNE_TESTIMONIALS_VERSION', '1.6.3' );
+define( 'BNE_TESTIMONIALS_VERSION', '1.6.4' );
 define( 'BNE_TESTIMONIALS_DIR', dirname( __FILE__ ) );
 define( 'BNE_TESTIMONIALS_URI', plugins_url( '', __FILE__ ) );
 define( 'BNE_TESTIMONIALS_BASENAME', plugin_basename( __FILE__ ) );
@@ -80,8 +80,11 @@ include_once( BNE_TESTIMONIALS_DIR . '/includes/help.php' );
 */
 function bne_testimonials_register_scripts() {
 	
-	// Register the CSS
-	wp_register_style( 'bne-testimonial-styles', BNE_TESTIMONIALS_URI . '/assets/css/bne-testimonials.css', '', BNE_TESTIMONIALS_VERSION, 'all' );
+	// Register the CSS DEV version
+	//wp_register_style( 'bne-testimonial-styles', BNE_TESTIMONIALS_URI . '/assets/css/bne-testimonials.css', '', BNE_TESTIMONIALS_VERSION, 'all' );
+
+	// Register the CSS MIN Production version
+	wp_register_style( 'bne-testimonial-styles', BNE_TESTIMONIALS_URI . '/assets/css/bne-testimonials.min.css', '', BNE_TESTIMONIALS_VERSION, 'all' );
 
 	// Register the JS
 	wp_register_script( 'flexslider', BNE_TESTIMONIALS_URI . '/assets/js/flexslider.min-v2.2.0.js', array('jquery'), '2.2.0', true );

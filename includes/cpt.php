@@ -198,7 +198,7 @@ function bne_testimonials_posts_custom_columns( $column_name, $id ) {
 		echo the_post_thumbnail( array( 80, 80 ) );
     }
 	if( $column_name === 'bne_testimonials_message' ) {
-		echo substr( get_the_content(), 0, 80 ) . '...';
+		echo substr( get_the_excerpt(), 0, 80 ) . '...';
     }
 }
 
