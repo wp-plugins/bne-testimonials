@@ -16,7 +16,7 @@ Display testimonials and reviews on any page as a list or slider using a shortco
 
 Adds a new Post Type to display Testimonials on your website as a list or slider (flexslider). Each testimonial includes a title, featured image, tagline, website, message, and includes a custom taxonomy to seperate your testimonials into different groups (categories). Supports multiple uses on any page or post.
 
-Available Shortcodes: [bne_testimonials_list] & [bne_testimonials_slider]. Also includes widget versions of the list and slider display. Want to see a live demo? Check out [website](http://www.bluenotesentertainment.com/products/testimonials-wordpress-pro/ "BNE Testimonials PRO"). You can see how the list and slider displays will look including different image styles. Free version does not include Masonry or form submission. 
+Available Shortcodes: [bne_testimonials_list] & [bne_testimonials_slider]. Also includes widget versions of the list and slider display. View the [live demo](http://www.bluenotesentertainment.com/products/testimonials-wordpress-pro/ "BNE Testimonials PRO"). You can see how the list and slider displays will look including different image styles. Free version does not include Masonry or form submission. 
 
 = Display your testimonials as a List =
 The list view allows you display your testimonials in a unified format must like an archive blog page. You can specify when elements are now shown and the style of the testimonial photo (featured image). You can also arrange your testimonials based on publish date, name, or random. Set your testimonials into categories to display multiple instances throughout your page. Use the shortcode [bne_testimonials_list]
@@ -52,11 +52,20 @@ You can view all available arguments to add to the shortcodes that changes the d
 = What size are the testimonial featured images? =
 By default, the crop size used is “thumbnail” which is defined on your site from Settings > Media. Usually this will be 150×150 but may be different depending on your website or theme. On the font side, the image will be reduced using CSS to 100×100 to better fit the testimonial format.
 
+= The Testimonial Image is stretched all the way across =
+If your theme or another plugin is also adding styles to flexslider, it might be overriding ours. Try adding the following to your theme’s custom css area or style.css file.
+<pre>
+.bne-testimonial-featured-image {
+	width: 100px !important;
+	height: 100px !important;
+}
+</pre>
+
 = Is there support? =
 Of course, but it is limited. We do not provide customizations or modifications beyond what the plugin currently provides. If you find any bugs or cannot get our plugin to work, please let us know so that we can look into it. Code is never perfect but it is poetry and there is always room for improvement.
 
 = Can you add feature X and Y? =
-Possible, but most likely not in the free version. If you would like to see new features added, check out our [website](http://www.bluenotesentertainment.com/products/testimonials-wordpress-pro/ "PRO version of BNE Testimonials"). Perhaps your wanted featured is already there.
+Possible, but most likely not in the free version. If you would like to see new features added, check out the [pro version](http://www.bluenotesentertainment.com/products/testimonials-wordpress-pro/ "PRO version of BNE Testimonials") first. Perhaps your wanted feature is already there.
 
 
 == Screenshots ==
