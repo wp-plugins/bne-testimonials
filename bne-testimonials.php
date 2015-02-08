@@ -1,15 +1,15 @@
 <?php
 /*
  * Plugin Name: BNE Testimonials
- * Version: 1.6.4
+ * Version: 1.7.0
  * Plugin URI: http://www.bluenotesentertainment.com/blog/new-testimonial-plugin-for-wordpress/
  * Description: Adds a Custom Post Type to display Testimonials on any page, post, or sidebar. Display the testimonials as a list or slider powered by Flexslider. Shortcodes: [bne_testimonials_list] & [bne_testimonials_slider]. Includes corresponding widget options.
  * Author: Kerry Kline, Bluenotes Entertainment
  * Author URI: http://www.bluenotesentertainment.com
- * Requires at least: 3.7
+ * Requires at least: 3.8
  * License: GPL2
 
-    Copyright 2013-2014  Bluenotes Entertainment
+    Copyright 2013-2015  Bluenotes Entertainment
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License version 2,
@@ -34,13 +34,25 @@ if ( !defined('ABSPATH') ) exit;
 
 
 /* ===========================================================
- *	Plugin Constants
+ *	Plugin Constants and Localization
  * ======================================================== */
 
-define( 'BNE_TESTIMONIALS_VERSION', '1.6.4' );
+define( 'BNE_TESTIMONIALS_VERSION', '1.7.0' );
 define( 'BNE_TESTIMONIALS_DIR', dirname( __FILE__ ) );
 define( 'BNE_TESTIMONIALS_URI', plugins_url( '', __FILE__ ) );
 define( 'BNE_TESTIMONIALS_BASENAME', plugin_basename( __FILE__ ) );
+
+
+/*
+ * 	Load plugin textdomain for localization
+ *
+ * 	@since 1.0.0
+*/
+function bne_testimonials_textdomain() {
+  load_plugin_textdomain( 'bne-testimonials', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+}
+add_action( 'plugins_loaded', 'bne_testimonials_textdomain' );
+
 
 
 
@@ -68,6 +80,7 @@ include_once( BNE_TESTIMONIALS_DIR . '/includes/help.php' );
 
 
 
+
 /* ===========================================================
  *	Scripts and Styles
  * ======================================================== */
@@ -76,36 +89,21 @@ include_once( BNE_TESTIMONIALS_DIR . '/includes/help.php' );
 /*
  *	Register Plugin CSS and JS
  *	@since v1.5
- *	@updated Dec 27 2013
+ *	@updated Feb 7 2015
 */
 function bne_testimonials_register_scripts() {
-	
-	// Register the CSS DEV version
-	//wp_register_style( 'bne-testimonial-styles', BNE_TESTIMONIALS_URI . '/assets/css/bne-testimonials.css', '', BNE_TESTIMONIALS_VERSION, 'all' );
 
-	// Register the CSS MIN Production version
-	wp_register_style( 'bne-testimonial-styles', BNE_TESTIMONIALS_URI . '/assets/css/bne-testimonials.min.css', '', BNE_TESTIMONIALS_VERSION, 'all' );
+	// Register the CSS
+	wp_register_style( 'bne-testimonial-styles', BNE_TESTIMONIALS_URI . '/assets/css/bne-testimonials.css', '', BNE_TESTIMONIALS_VERSION, 'all' );
 
 	// Register the JS
-	wp_register_script( 'flexslider', BNE_TESTIMONIALS_URI . '/assets/js/flexslider.min-v2.2.0.js', array('jquery'), '2.2.0', true );
-	
+	wp_register_script( 'flexslider', BNE_TESTIMONIALS_URI . '/assets/js/flexslider.min-v2.2.2.js', array('jquery'), '2.2.2', true );
+
 	// Load the plugin CSS
 	wp_enqueue_style( 'bne-testimonial-styles' );
-			
+
 }
 add_action( 'wp_enqueue_scripts', 'bne_testimonials_register_scripts' );
-
-
-
-/*
- *	Testimonial List Script Enqueue (Called from shortcode/widget)
- *	@since v1.5
- *	@updated Dec 27 2013
-*/
-function bne_testimonials_list_enqueue_scripts() {
-	//wp_enqueue_style( 'bne-testimonial-styles');				
-}
-
 
 
 /*
@@ -116,7 +114,6 @@ function bne_testimonials_list_enqueue_scripts() {
 function bne_testimonials_slider_enqueue_scripts() {
 	wp_enqueue_script( 'jquery' ); // just in case...
 	wp_enqueue_script( 'flexslider' );
-	//wp_enqueue_style( 'bne-testimonial-styles');				
 }
 
 
@@ -124,6 +121,42 @@ function bne_testimonials_slider_enqueue_scripts() {
 /* ===========================================================
  *	Testimonial Output Functions
  * ======================================================== */
+
+
+
+/*
+ *	Testimonial Options Array
+ *	Pulls in all options into a single array to use throughout
+ *
+ *	@since v1.7.0
+*/
+function bne_testimonials_options_array( $image_style, $lightbox_rel, $image, $name ) {
+
+	$testimonial_id = get_the_ID();
+	$thumbnail_id = get_post_thumbnail_id( $testimonial_id );
+	$featured_image_class = 'bne-testimonial-featured-image '.$image_style;
+
+	$options = array(
+		'testimonial_id'	=> $testimonial_id,
+		'lightbox_rel' 		=> $lightbox_rel,
+		'lightbox_url' 		=> wp_get_attachment_url( $thumbnail_id ),
+		'lightbox_title' 	=> the_title_attribute( 'echo=0' ),
+		'featured_image' 	=> get_the_post_thumbnail( $testimonial_id, 'thumbnail', array( 'class' => $featured_image_class, 'alt' => " " ) ),
+		'image' 			=> $image,
+		'name' 				=> $name,
+		'tagline'			=> sanitize_text_field( get_post_meta( $testimonial_id, 'tagline', true ) ),
+		'website_url'		=> esc_url( get_post_meta( $testimonial_id, 'website-url', true ) )
+	);
+
+	//echo '<pre>';
+	//echo print_r( $options );
+	//echo '</pre>';
+
+	return $options;
+
+}
+
+
 
 
 /*
@@ -135,7 +168,7 @@ function bne_testimonials_slider_enqueue_scripts() {
  *	@updated Dec 27 2013
 */
 function bne_testimonials_single_structure( $options ) {
-	
+
 	// Empty String
 	$shortcode_output = '';
 
@@ -143,18 +176,18 @@ function bne_testimonials_single_structure( $options ) {
 	if ( $options['image'] != 'false' ) {
 		$shortcode_output .= bne_testimonials_featured_image( $options );
 	}
-	
+
 	// Testimonial Title
 	if ( $options['name'] != 'false' ) {
 		$shortcode_output .= bne_testimonials_title( $options );
 	}
 
 	// Testimonial Tagline and Website URL
-	if ( !empty( $options['tagline'] ) || !empty( $options['website_url'] ) ) {
+	if ( $options['tagline'] || $options['website_url'] ) {
 		$shortcode_output .= bne_testimonials_details( $options );
 	}
 
-	// Testimonial Content												
+	// Testimonial Content
 	$shortcode_output .= bne_testimonials_the_content( $options );
 
 	return apply_filters( 'bne_testimonials_single_structure', $shortcode_output, $options );
@@ -167,38 +200,38 @@ function bne_testimonials_single_structure( $options ) {
  *	$options - Pulls in Array Options
  *
  *	@since v1.6
- *	@updated Dec 27 2013
+ *	@updated Jan 7 2015
 */
 function bne_testimonials_featured_image( $options ) {
-	
+
 	// If Lightbox Rel is set, apply it to the featured image
-	if ($options['lightbox_rel']) {
-		$shortcode_output = '<a href="'.$options['lightbox_url'].'" rel="'.$options['lightbox_rel'].'" title="'.$options['lightbox_title'].'">';
+	if ( $options['lightbox_rel'] ) {
+		$shortcode_output = '<a href="'.$options['lightbox_url'].'" class="'.$options['lightbox_rel'].'" rel="'.$options['lightbox_rel'].'" title="'.$options['lightbox_title'].'">';
 			$shortcode_output .= $options['featured_image'];
 		$shortcode_output .= '</a>';
 	}
-	
+
 	// No Lightbox Rel is set, only display the featured image (normal)
 	else {
 		$shortcode_output = $options['featured_image'];
 	}
-	
+
 	return apply_filters( 'bne_testimonials_featured_image', $shortcode_output, $options );
 }
 
 
 
 /*
- *	Testimonial Title 
+ *	Testimonial Title
  *	$options - Pulls in Array Options
  *
  *	@since v1.6
  *	@updated Dec 20 2013
 */
 function bne_testimonials_title( $options ) {
-	
+
 	$shortcode_output = '<h3 class="bne-testimonial-heading">'.get_the_title().'</h3>';
-	
+
 	return apply_filters( 'bne_testimonials_title', $shortcode_output, $options );
 }
 
@@ -209,29 +242,27 @@ function bne_testimonials_title( $options ) {
  *	$options - Pulls in Array Options
  *
  *	@since v1.6
- *	@updated Dec 27 2013
+ *	@updated Feb 7 2015
 */
 function bne_testimonials_details( $options ) {
-	
+
 	$shortcode_output = '<div class="bne-testimonial-details">';
-	
-		// Tagline/Company Name Only
-		if ( empty( $options['website_url'] ) ) {
+
+		// Tagline/Company Name and Website URL
+		if( $options['tagline'] && $options['website_url'] ) {
+			$shortcode_output .= '<span class="bne-testimonial-website-url"><a href="'.$options['website_url'].'" target="_blank" title="'.$options['tagline'].'">'.$options['tagline'].'</a></span>';
+
+		// Tagline Only
+		} elseif( $options['tagline'] ) {
 			$shortcode_output .= '<span class="bne-testimonial-tagline">'.$options['tagline'].'</span>';
-		}
-		
-		// Website URL Only
-		if ( empty( $options['tagline'] ) ) {
+
+		// Website URL only
+		} elseif( $options['website_url'] ) {
 			$shortcode_output .= '<span class="bne-testimonial-website-url"><a href="'.$options['website_url'].'" target="_blank">'.$options['website_url'].'</a></span>';
 		}
-		
-		// Tagline/Company Name and Website URL
-		if ( !empty( $options['tagline'] ) && !empty( $options['website_url'] ) ) {
-			$shortcode_output .= '<span class="bne-testimonial-website-url"><a href="'.$options['website_url'].'" target="_blank" title="'.$options['tagline'].'">'.$options['tagline'].'</a></span>';
-		}
-	
+
 	$shortcode_output .= '</div><!-- bne-testimonial-details (end) -->';
-	
+
 	return apply_filters( 'bne_testimonials_details', $shortcode_output, $options );
 }
 
@@ -246,11 +277,11 @@ function bne_testimonials_details( $options ) {
  *	@updated May 23 2014
 */
 function bne_testimonials_the_content( $options ) {
-	
+
 	// Format the Content
-	$get_content = wpautop( get_the_content() ); 
-	
+	$get_content = wpautop( get_the_content() );
+
 	$shortcode_output = '<div class="bne-testimonial-description">'.$get_content.'</div>';
-	
+
 	return apply_filters( 'bne_testimonials_the_content', $shortcode_output, $options );
 }

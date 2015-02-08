@@ -5,43 +5,43 @@
  *	CPT Settings and Admin Functions
  *
  * 	@author		Kerry Kline
- * 	@copyright	Copyright (c) 2014, Kerry Kline
+ * 	@copyright	Copyright (c) 2013-2015, Kerry Kline
  * 	@link		http://www.bluenotesentertainment.com
  *
- *	@updated: May 24, 2014
+ *	@updated: February 7, 2015
 */
 
 
 
-/* ===========================================================
+/*
  *	Register Testimonials Custom Post Type
+ *	post edit screen.
  *	@since v1.0
- * ======================================================== */
-
-
+*/
 function bne_testimonials_post_type() {
-	// Custom Post Type Labels      
+
+	// Custom Post Type Labels
 	$labels = array(
-		'name'               => __( 'Testimonials' ),
-		'singular_name'      => __( 'Testimonial' ),
-		'add_new'            => __( 'Add new testimonial' ),
-		'add_new_item'       => __( 'Add new Testimonial' ),
-		'edit_item'          => __( 'Edit Testimonial' ),
-		'new_item'           => __( 'New Testimonial' ),
-		'all_items'          => __( 'All Testimonials' ),
-		'view_item'          => __( 'View Testimonial' ),
-		'search_items'       => __( 'Search Testimonials' ),
-		'not_found'          => __( 'No Testimonial found' ),
-		'not_found_in_trash' => __( 'No Testimonial found in trash' ),
-		'parent_item_colon'  => __( 'Parent Testimonial' ),
-		'menu_name'          => __( 'Testimonials' )
+		'name'               => __( 'Testimonials', 'bne-testimonials' ),
+		'singular_name'      => __( 'Testimonial', 'bne-testimonials' ),
+		'add_new'            => __( 'Add new testimonial', 'bne-testimonials' ),
+		'add_new_item'       => __( 'Add new Testimonial', 'bne-testimonials' ),
+		'edit_item'          => __( 'Edit Testimonial', 'bne-testimonials' ),
+		'new_item'           => __( 'New Testimonial', 'bne-testimonials' ),
+		'all_items'          => __( 'All Testimonials', 'bne-testimonials' ),
+		'view_item'          => __( 'View Testimonial', 'bne-testimonials' ),
+		'search_items'       => __( 'Search Testimonials', 'bne-testimonials' ),
+		'not_found'          => __( 'No Testimonial found', 'bne-testimonials' ),
+		'not_found_in_trash' => __( 'No Testimonial found in trash', 'bne-testimonials' ),
+		'parent_item_colon'  => __( 'Parent Testimonial', 'bne-testimonials' ),
+		'menu_name'          => __( 'Testimonials', 'bne-testimonials' )
 	);
-	
-	// Custom Post Type Supports  
+
+	// Custom Post Type Supports
 	$supports = array('title', 'editor', 'thumbnail');
-	
-	// Custom Post Type Arguments  
-	$args = array(
+
+	// Custom Post Type Arguments
+	$args = apply_filters( 'bne_testimonials_cpt_args', array(
 	    'labels'             	=> $labels,
 	    'hierarchical'       	=> false,
 	    'description'        	=> '',
@@ -56,11 +56,11 @@ function bne_testimonials_post_type() {
 	    'rewrite'            	=> false,
 	    'can_export'         	=> true,
 	    'has_archive'        	=> false,
-	    //'menu_position'      	=> 5,
+	    'menu_icon' 			=> 'dashicons-id-alt',
 	    'supports'           	=> $supports,
 	    'capability_type'    	=> 'post'
-	);
-	
+	) );
+
 	register_post_type( 'bne_testimonials', $args );
 
 }
@@ -68,71 +68,6 @@ add_action( 'init', 'bne_testimonials_post_type' );
 
 
 
-
-
-/* ===========================================================
- *	BNE Testimonials Menu icon
- *	@since v1.0
- * ======================================================== */
-
-
-function bne_testimonials_admin_styles() {
-	global $wp_version;
-	?>
-	<style type="text/css" media="screen">
-		/* BNE Testimonials Menu/Page Icon CSS */
-		#menu-posts-bne_testimonials .wp-menu-image {
-			background: none;
-			background-image: url(<?php echo BNE_TESTIMONIALS_URI . '/assets/images/menu-icon.png';?>);
-			background-repeat: no-repeat;
-			background-position: 1px -4px !important;
-			background-size: 105px 190px;
-		}
-		#menu-posts-bne_testimonials.wp-menu-open .wp-menu-image,
-		#menu-posts-bne_testimonials:hover .wp-menu-image {
-			background-position: -49px -4px !important;
-		}
-		#icon-edit.icon32-posts-bne_testimonials {
-			background: none;
-			background-image: url(<?php echo BNE_TESTIMONIALS_URI . '/assets/images/menu-icon.png';?>);
-			background-repeat: no-repeat;
-			background-position: -54px -36px !important;
-			background-size: 105px 190px;
-		}
-		@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-device-pixel-ratio: 2) {
-
-			#menu-posts-bne_testimonials .wp-menu-image {
-				background-position: 4px -12px !important;
-				background-size: 55px 90px;
-			}
-			#menu-posts-bne_testimonials.wp-menu-open .wp-menu-image,
-			#menu-posts-bne_testimonials:hover .wp-menu-image {
-				background-position: -22px -12px !important;
-			}
-			#icon-edit.icon32-posts-bne_testimonials {
-				background-position: -1px -47px !important;
-				background-size: 55px 96px;
-			}
-		}
-		
-		/* WP 3.8+ - Use WP Builtin Dashicons */
-		<?php if ( $wp_version >= 3.8 ) { ?>
-		#adminmenu #menu-posts-bne_testimonials.menu-icon-post div.wp-menu-image:before {
-			content: '\f337';
-		}
-		<?php } ?>
-			
-		
-    </style>
-    <?php
-}
-add_action( 'admin_head', 'bne_testimonials_admin_styles' );
-
-
-
-/* ===========================================================
- *	CPT Messages
- * ======================================================== */
 
 /*
  *	CPT Update Messages when creating/editing a Testimonial on the
@@ -144,27 +79,23 @@ function bne_testimonials_updated_messages( $messages ) {
 
     $screen = get_current_screen();
     if ( 'bne_testimonials' == $screen->post_type ){
-	
-		$messages["post"][1] 	= __( 'Testimonial updated! ');
-		$messages["post"][6] 	= __( 'Testimonial published! ');
-		$messages["post"][10] 	= __( 'Testimonial draft updated! ');
-	
+
+		$messages["post"][1] 	= __( 'Testimonial updated!', 'bne-testimonials' );
+		$messages["post"][6] 	= __( 'Testimonial published!', 'bne-testimonials' );
+		$messages["post"][10] 	= __( 'Testimonial draft updated!', 'bne-testimonials' );
+
 		return $messages;
 	}
-	
+
 	return $messages;
 }
 add_filter( 'post_updated_messages', 'bne_testimonials_updated_messages' );
 
 
 
-/* ===========================================================
- *	Testimonial Post List/Edit Admin Screens
- * ======================================================== */
-
 
 /*
- *	Setup Post List Columns 
+ *	Setup Post List Columns
  *	@since v1.1
 */
 if (function_exists( 'add_theme_support' )){
@@ -173,34 +104,42 @@ if (function_exists( 'add_theme_support' )){
 }
 
 
+
 /*
- *	Remove/Add Columns
+ *	Remove/Add Columns Post List Columns
  *	@since v1.1
 */
 function bne_testimonials_posts_columns( $columns ){
     unset( $columns['date'] );
-   
-    $columns['title'] = __( 'Name' );
-    $columns['taxonomy-bne-testimonials-taxonomy'] = __( 'Category' );
-    $columns['bne_testimonials_message'] = __( 'Message' );
-    $columns['bne_testimonials_post_list_thumbs'] = __( 'Image' );
-    $columns['date'] = __( 'Date' );
+
+    $columns['title'] = __( 'Name', 'bne-testimonials' );
+    $columns['taxonomy-bne-testimonials-taxonomy'] = __( 'Category', 'bne-testimonials' );
+    $columns['bne_testimonials_message'] = __( 'Message', 'bne-testimonials' );
+    $columns['bne_testimonials_post_list_thumbs'] = __( 'Image', 'bne-testimonials' );
+    $columns['date'] = __( 'Date', 'bne-testimonials' );
     return $columns;
 }
 
 
+
+
 /*
- *	Add Content to the Columns
+ *	Add Content to Post List Columns
  *	@since v1.1
 */
 function bne_testimonials_posts_custom_columns( $column_name, $id ) {
+
 	if( $column_name === 'bne_testimonials_post_list_thumbs' ) {
 		echo the_post_thumbnail( array( 80, 80 ) );
     }
+
 	if( $column_name === 'bne_testimonials_message' ) {
 		echo substr( get_the_excerpt(), 0, 80 ) . '...';
     }
+
 }
+
+
 
 
 /*
@@ -209,12 +148,16 @@ function bne_testimonials_posts_custom_columns( $column_name, $id ) {
 */
 function bne_testimonials_post_title( $title ){
     $screen = get_current_screen();
-    if ( 'bne_testimonials' == $screen->post_type ) {
-        $title = __( 'Enter the person\'s name here' );
-    } 
+
+    if( 'bne_testimonials' == $screen->post_type ) {
+        $title = __( 'Enter the person\'s name here', 'bne-testimonials' );
+    }
+
     return $title;
 }
-add_filter( 'enter_title_here', 'bne_testimonials_post_title' );
+add_filter( 'enter_title_here', 'bne_testimonials_post_title', 'bne-testimonials' );
+
+
 
 
 /*
@@ -222,10 +165,14 @@ add_filter( 'enter_title_here', 'bne_testimonials_post_title' );
  *	@since v1.1
 */
 function bne_testimonials_admin_featured_image_text() {
-    remove_meta_box( 'postimagediv', 'bne_testimonials', 'side' );
-    add_meta_box( 'postimagediv', __( 'Set Testimonial Thumbnail' ), 'bne_testimonials_featured_image_box', 'bne_testimonials', 'side', 'default' );
+
+    remove_meta_box( 'postimagediv', 'bne_testimonials', 'side', 'bne-testimonials' );
+
+    add_meta_box( 'postimagediv', __( 'Set Testimonial Thumbnail', 'bne-testimonials' ), 'bne_testimonials_featured_image_box', 'bne_testimonials', 'side', 'default' );
 }
 add_action( 'do_meta_boxes', 'bne_testimonials_admin_featured_image_text' );
+
+
 
 
 /*
@@ -235,8 +182,10 @@ add_action( 'do_meta_boxes', 'bne_testimonials_admin_featured_image_text' );
 function bne_testimonials_featured_image_box( $post ) {
 	$thumbnail_id = get_post_meta( $post->ID, '_thumbnail_id', true );
 	echo _wp_post_thumbnail_html( $thumbnail_id, $post->ID );
-	echo __( 'Add an optional featured image for this testimonial.' );
+	echo __( 'Add an optional featured image for this testimonial.', 'bne-testimonials' );
 }
+
+
 
 
 /*
@@ -245,7 +194,7 @@ function bne_testimonials_featured_image_box( $post ) {
  *	@updated v1.6.3
 */
 function bne_testimonials_add_thumbnail_support() {
-	
+
 	// Remove default support which may limit certain
     // post-types not specified from the active theme.
 	remove_theme_support( 'post-thumbnails' );
@@ -256,14 +205,9 @@ function bne_testimonials_add_thumbnail_support() {
 		add_theme_support( 'post-thumbnails' );
 	}
 }
-
 add_action( 'after_setup_theme', 'bne_testimonials_add_thumbnail_support', 11 );
 
 
-
-/* ===========================================================
- *	Register Custom Fields Meta Boxe for BNE Testimonials
- * ======================================================== */
 
 
 /*
@@ -271,10 +215,10 @@ add_action( 'after_setup_theme', 'bne_testimonials_add_thumbnail_support', 11 );
  *	@since v1.0
 */
 function bne_testimonials_details_metabox() {
-	add_meta_box( 'testimonial_details', __( 'Optional Testimonial Details' ), 'bne_testimonials_details_metabox_fields', 'bne_testimonials', 'normal', 'high' );
-        
+	add_meta_box( 'testimonial_details', __( 'Optional Testimonial Details', 'bne-testimonials' ), 'bne_testimonials_details_metabox_fields', 'bne_testimonials', 'normal', 'high' );
+
 }
-add_action( 'add_meta_boxes', 'bne_testimonials_details_metabox' ); 
+add_action( 'add_meta_boxes', 'bne_testimonials_details_metabox' );
 
 
 /*
@@ -282,33 +226,33 @@ add_action( 'add_meta_boxes', 'bne_testimonials_details_metabox' );
  *	@since v1.0
 */
 function bne_testimonials_details_metabox_fields() {
-	
+
 	global $post;
-	
+
 	?>
 	<table class="form-table" id="rc_wctg_metabox">
 		<tbody>
 			<tr class="form-field">
 				<th scope="row" valign="top" style="width: 30%;">
-					<label for="tagline"><?php echo __('Tagline or Company Name:');?></label>
+					<label for="tagline"><?php echo __('Tagline or Company Name:', 'bne-testimonials');?></label>
 				</th>
-				<?php $tagline = ( get_post_meta($post->ID, 'tagline', true) ) ? get_post_meta($post->ID, 'tagline', true) : ''; ?>
+				<?php $tagline = ( get_post_meta( $post->ID, 'tagline', true ) ) ? get_post_meta( $post->ID, 'tagline', true ) : ''; ?>
 				<td>
-					<input type="text" id="tagline" name="rc_wctg_meta_field[tagline]" value="<?php echo $tagline; ?>" title="Enter a tagline for the person giving this testimonial (for example: ">
+					<input type="text" id="tagline" name="rc_wctg_meta_field[tagline]" value="<?php echo $tagline; ?>">
 					<span class="description" style="display:block;">
-						<?php echo __('Enter a tagline or Company Name of this testimonial. This field is also used as the website anchor text if a url is entered below. Example: "Owner of Cat\'s Town".');?>
+						<?php echo __( 'Enter a tagline or Company Name of this testimonial. This field is also used as the website anchor text if a url is entered below. Example: "Owner of Cat\'s Town".', 'bne-testimonials' ); ?>
 					</span>
 				</td>
 			</tr>
 			<tr class="form-field">
 				<th scope="row" valign="top" style="width: 30%;">
-					<label for="website-url"><?php echo __('Website URL:');?></label>
+					<label for="website-url"><?php echo __('Website URL:', 'bne-testimonials');?></label>
 				</th>
-				<?php $website_url = ( get_post_meta($post->ID, 'website-url', true) ) ? get_post_meta($post->ID, 'website-url', true) : ''; ?>
+				<?php $website_url = ( get_post_meta( $post->ID, 'website-url', true ) ) ? get_post_meta( $post->ID, 'website-url', true ) : ''; ?>
 				<td>
-					<input type="text" id="website-url" name="rc_wctg_meta_field[website-url]" value="<?php echo $website_url; ?>" title="Enter a URL that applies to this customer (for example: http://google.com/).">
+					<input type="text" id="website-url" name="rc_wctg_meta_field[website-url]" value="<?php echo $website_url; ?>">
 					<span class="description" style="display:block;">
-						<?php echo __('Enter a URL that applies to this testimonial. Ex: http://www.google.com/')?>
+						<?php echo __('Enter a URL that applies to this testimonial. Ex: http://www.google.com/', 'bne-testimonials'); ?>
 					</span>
 				</td>
 			</tr>
@@ -317,6 +261,8 @@ function bne_testimonials_details_metabox_fields() {
 
 	<?php
 }
+
+
 
 
 /*
@@ -328,9 +274,9 @@ function bne_testimonials_save_post_meta( $post_id, $post ) {
 	// Is the user allowed to edit the post or page?
 	if ( !current_user_can( 'edit_post', $post->ID ))
 		return $post->ID;
-		
+
 	$post_meta =  array();
-	
+
 	// place all meta fields into a single array
 	if( isset($_POST['rc_wctg_meta_field'] ) ) {
 		$meta_fields = $_POST['rc_wctg_meta_field'];
@@ -338,7 +284,7 @@ function bne_testimonials_save_post_meta( $post_id, $post ) {
 			$post_meta[$meta_key] = $meta_value;
 		}
 	}
-	
+
 	// Add values of $post_meta as custom fields
 	foreach ($post_meta as $key => $value) {
 		if( $post->post_type == 'revision' ) return;
