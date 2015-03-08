@@ -1,10 +1,10 @@
 === BNE Testimonials ===
-Author URI: http://www.bluenotesentertainment.com
+Author URI: http://www.bnecreative.com
 Contributors: bluenotes
 Tags: testimonials, flexslider, feedback, reviews
 Requires at least: 3.8
-Tested up to: 4.1
-Stable tag: 1.7.0
+Tested up to: 4.1.1
+Stable tag: 1.7.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -16,7 +16,7 @@ Easily display testimonials on any page as a list or slider using shortcodes or 
 
 Adds Testimonials on your website as a list or slider (flexslider). Each testimonial includes a title, featured image, tagline, website, message, and includes a custom taxonomy to separate your testimonials into different groups (categories). Supports multiple uses on any page or post.
 
-Available Shortcodes: [bne_testimonials_list] & [bne_testimonials_slider]. Also includes widget versions of the list and slider display. View the [live demo](http://www.bluenotesentertainment.com/products/testimonials-wordpress-pro/ "BNE Testimonials PRO"). You can see how the list and slider displays will look including different image styles. Free version does not include Masonry or form submission.
+Available Shortcodes: [bne_testimonials_list] & [bne_testimonials_slider]. Also includes widget versions of the list and slider display. View the [live demo](http://www.bnecreative.com/products/testimonials-wordpress-pro/ "BNE Testimonials PRO"). You can see how the list and slider displays will look including different image styles. Free version does not include Masonry or form submission.
 
 = Display your testimonials as a List =
 The list view allows you display your testimonials in a unified format must like an archive blog page. You can specify when elements are now shown and the style of the testimonial photo (featured image). You can also arrange your testimonials based on publish date, name, or random. Set your testimonials into categories to display multiple instances throughout your page. Use the shortcode [bne_testimonials_list]
@@ -25,7 +25,7 @@ The list view allows you display your testimonials in a unified format must like
 The slider version is built using Flexslider.js. Does everything as the list view but as a slideshow using either Fade or Slide transitions. Set your testimonials into categories to display multiple instances throughout your page.  Use the shortcode [bne_testimonials_slider]
 
 = Upgrade to the Pro Version! =
-We have a PRO version of BNE Testimonials on our [website](http://www.bluenotesentertainment.com/products/testimonials-wordpress-pro/ "BNE Testimonials PRO"). The Pro version adds a 3rd view, Masonry, and a front-end form to submit new testimonials with admin notifications. In addition, more developer tools, support, and page pagination for list and masonry.
+We have a PRO version of BNE Testimonials on our [website](http://www.bnecreative.com/products/testimonials-wordpress-pro/ "BNE Testimonials PRO"). The Pro version adds a 3rd view, Masonry, and a front-end form to submit new testimonials with admin notifications. In addition, more developer tools, support, and page pagination for list and masonry.
 
 
 
@@ -65,7 +65,7 @@ If your theme or another plugin is also adding styles to flexslider, it might be
 Of course, but it is limited. We do not provide customizations or modifications beyond what the plugin currently provides. If you find any bugs or cannot get our plugin to work, please let us know so that we can look into it. Code is never perfect but it is poetry and there is always room for improvement.
 
 = Can you add feature X and Y? =
-Possible, but most likely not in the free version. If you would like to see new features added, check out the [pro version](http://www.bluenotesentertainment.com/products/testimonials-wordpress-pro/ "PRO version of BNE Testimonials") first. Perhaps your wanted feature is already there.
+Possible, but most likely not in the free version. If you would like to see new features added, check out the [pro version](http://www.bnecreative.com/products/testimonials-wordpress-pro/ "PRO version of BNE Testimonials") first. Perhaps your wanted feature is already there.
 
 
 == Screenshots ==
@@ -78,16 +78,24 @@ Possible, but most likely not in the free version. If you would like to see new 
 
 == Changelog ==
 
-= 1.7.0 ( February 7, 2015 ) =
-* IMPORTANT CHANGE: The flexslider html div is now called bne-flexslider. This was done to prevent theme's or other plugins who also use flexslider to not throw their css onto our instance of flexslider and vice versa. Note because of this, any custom CSS edits you may have done to specifically ".bne-testimonial-slider.flexslider {...}" will need to be adjusted to match the new schema. If you used, ".bne-testimonial-slider" only, then you should be fine.
+= 1.7.1 ( March 7, 2015 ) =
+* Fix: flexslider.js with mobile firefox
+* Tweak: Cleaned up help admin page.
+* Note: Update branding from Bluenotes Entertainment to BNE Creative ( Why? http://www.bnecreative.com/blog/introducing-bne-creative/ )
 
+
+
+= 1.7.0 ( February 7, 2015 ) =
+* IMPORTANT CHANGE #1: The flexslider html div is now called bne-flexslider. This was done to prevent theme's or other plugins who also use flexslider to not throw their css onto our instance of flexslider and vice versa. Note because of this, any custom CSS edits you may have done to specifically ".bne-testimonial-slider.flexslider {...}" will need to be adjusted to match the new schema. If you used, ".bne-testimonial-slider" only, then you should be fine.
+* IMPORTANT CHANGE #2: If you find the Testimonial Slider Widget is not working after this update, this is because a new option was added, see Animation Speed below. To fix this, simply delete the widget and re-add it so that the new option is recognized.
 * Updated internal flexslider.js to v2.2.2
 * New: Added Animation Speed option to slider shortcode, Ex: [bne_testimonials_slider animation_speed="500"] and to slider widget options.
 * New: Now localization Ready!
 * Fix: Attempt to address a random issue with mobile safari and the slider (flexslider) stalling when a scrolling event has not finished.
 * Tweak: Cleanup CSS
 * Tweak: Admin menu icon now uses the default dashicon call within register_post_type() instead of using css to output the icon.
-* Note: Support is only provided for WP 3.8+.
+* Note #1: Support is only provided for WP 3.8+.
+
 
 
 = 1.6.4 (August 27, 2014) =

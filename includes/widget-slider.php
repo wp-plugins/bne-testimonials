@@ -6,9 +6,9 @@
  *
  * 	@author		Kerry Kline
  * 	@copyright	Copyright (c) 2013-2015, Kerry Kline
- * 	@link		http://www.bluenotesentertainment.com
+ * 	@link		http://www.bnecreative.com
  *
- *	@updated: 	February 7, 2015
+ *	@updated: 	February 11, 2015
 */
 
 
@@ -359,6 +359,11 @@ class bne_testimonials_slider_widget extends WP_Widget {
 		// Check if Widget title is set
 		if ( $title ) {
 		  echo $before_title . $title . $after_title;
+		}
+
+		// Fall back for animation_speed upgrading to v1.7.0
+		if( !$animation_speed ) {
+			 $animation_speed = '700';
 		}
 
 

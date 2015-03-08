@@ -6,7 +6,7 @@
  *
  * 	@author		Kerry Kline
  * 	@copyright	Copyright (c) 2013-2015, Kerry Kline
- * 	@link		http://www.bluenotesentertainment.com
+ * 	@link		http://www.bnecreative.com
  *
  *	@updated:	February 7, 2015
 */
@@ -60,15 +60,24 @@ function bne_testimonial_admin_help_page() {
 	<div id="bne-admin-wrapper" class="wrap">
 		<div class="bne-inner">
 
-			<img src="<?php echo BNE_TESTIMONIALS_URI . '/assets/images/help-icon.png';?>"  class="alignleft image-75"  />
-			<h1><?php echo __('Testimonial Instructions'); ?></h1>
-			<div class="clear"></div>
+			<script type="text/javascript">
+				jQuery(document).ready(function($) {
+					$('a.scroll').on('click', function() {
+						$('html, body').animate({
+							scrollTop: $(this.hash).offset().top - 50
+						}, 1000);
+						return false;
+					});
+				});  //End
+			</script>
+
+			<h1><?php echo __('Testimonial Instructions (Pro)', 'bne-testimonials'); ?></h1>
 
 			<div class="canvas">
 				<div class="row">
 					<div class="span-two-thirds">
 
-						<div class="widget">
+						<div id="list_shortcode" class="widget">
 							<h3 class="widget-title">Display Testimonials as a List (shortcode)</h3>
 							<p><strong>Shortcode:</strong> [bne_testimonials_list]</p>
 							<p>To change the default behavior of this shortcode, include any of the available arguments below. You only need to include them if changing the default behavior.</p>
@@ -146,7 +155,7 @@ function bne_testimonial_admin_help_page() {
 							<p>The above will display only 3 testimonials using the circle featured image style.</p>
 						</div><!-- .widget (end) -->
 
-						<div class="widget">
+						<div id="slider_shortcode" class="widget">
 							<h3 class="widget-title">Display Testimonials as a Slider (shortcode)</h3>
 							<p><strong>Shortcode:</strong> [bne_testimonials_slider]</p>
 							<p>To change the default behavior of this shortcode, include any of the available arguments below. You only need to include them if changing the default behavior.</p>
@@ -267,129 +276,83 @@ function bne_testimonial_admin_help_page() {
 						</div><!-- .widget (end) -->
 
 					</div><!-- .span-two-third (end) -->
+
 					<div class="span-one-third">
+
+						<div class="widget">
+							<h3 class="widget-title">Information</h3>
+
+							<p><strong>Current Version:</strong> <?php echo BNE_TESTIMONIALS_VERSION; ?> <a href="#TB_inline?width=600&height=450&inlineId=changelog_notes" class="thickbox" title="BNE Testimonials Changelog">View changelog</a></p>
+
+							<div id="changelog_notes" style="display:none;">
+
+								<strong>1.7.1 ( March 7, 2015 )</strong>
+								<ul style="list-style:disc;margin-left:20px;">
+									<li>Fix: flexslider.js with mobile firefox</li>
+									<li>Tweak: Cleaned up help admin page.</li>
+									<li>Other: Replaced branding from Bluenotes Entertainment to BNE Creative ( Why? http://www.bnecreative.com/blog/introducing-bne-creative/ )</li>
+								</ul>
+
+								<strong>1.7.0 ( February 7, 2015 )</strong>
+								<ul style="list-style:disc;margin-left:20px;">
+									<li>IMPORTANT CHANGE: The flexslider html div is now called bne-flexslider. This was done to prevent theme's or other plugins who also use flexslider to not throw their css onto our instance of flexslider and vice versa. Note because of this, any custom CSS edits you may have done to specifically ".bne-testimonial-slider.flexslider {...}" will need to be adjusted to match the new schema. If you used, ".bne-testimonial-slider" only, then you should be fine.</li>
+									<li>Updated internal flexslider.js to v2.2.2</li>
+									<li>New: Added Animation Speed option to slider shortcode, Ex: [bne_testimonials_slider animation_speed="500"] and to slider widget options.</li>
+									<li>New: Now localization Ready!</li>
+									<li>Tweak: Cleanup CSS</li>
+									<li>Tweak: Admin menu icon now uses the default dashicon call within register_post_type() instead of using css to output the icon.</li>
+									<li>Note: Support is only provided for WP 3.8+.</li>
+								</ul>
+
+
+								<strong>August 27, 2014 (1.6.4)</strong>
+								<ul style="list-style:disc;margin-left:20px;">
+									<li>Fix: An issue would arise on the testimonial post list where if an image was placed in the editor the table columns would shift.</li>
+									<li>Add: Sanitize the data output of the website url and tagline fields.</li>
+									<li>Compatibility Check: Works great in WP 4.0</li>
+								</ul>
+
+								<strong>May 25, 2014 (v1.6.3)</strong>
+								<ul style="list-style:disc;margin-left:20px;">
+									<li>Removed html tag limitations on get_the_content. All html tags and styles will now output normally from the visual/text editor.</li>
+									<li>Adjusted featured image support for themes that don't provide or limit certain post types from using it.</li>
+								</ul>
+
+								<p><strong><i>Previous version logs can be viewed on the plugin readme.txt file.</i></strong></p>
+
+							</div><!-- #change_log (end) -->
+
+							<p><strong>Sections:</strong></p>
+							<ul>
+								<li><a href="#list_shortcode" class="scroll" title="BNE Testimonials List Shortcode">List Shortcode</a></li>
+								<li><a href="#slider_shortcode" class="scroll" title="BNE Testimonials Slider Shortcode">Slider Shortcode</a></li>
+								<li><a href="http://support.bnecreative.com/product-support/wordpress-plugins/bne-testimonials-pro/" target="-blank">Available Filters/Hooks</a></li>
+							</ul>
+						</div>
+
 
 
 						<div class="widget">
 							<h3 class="widget-title"><?php echo _e( 'Check out the Pro Version!','bne-testimonials'); ?></h3>
-							<a href="http://www.bluenotesentertainment.com/products/testimonials-wordpress-pro/" target="_blank"><img src="<?php echo BNE_TESTIMONIALS_URI . '/assets/images/testimonials-pro-cover.jpg'; ?>" style="max-width: 100%;" class="pretty aligncenter" /></a>
+							<a href="http://www.bnecreative.com/products/testimonials-wordpress-pro/" target="_blank"><img src="<?php echo BNE_TESTIMONIALS_URI . '/assets/images/testimonials-pro-cover.jpg'; ?>" style="max-width: 100%;" class="pretty aligncenter" /></a>
 							<p><?php echo _e('Thanks for using the FREE version of BNE Testimonials. Did you know there is a <strong>PRO</strong> version that adds a front-end user submission form and Masonry display grid for your testimonials?', 'bne-testimonials' );?></p>
-							 <a href="http://www.bluenotesentertainment.com/products/testimonials-wordpress-pro/" class="button-primary" target="_blank">View Details and Demo</a>
+							 <a href="http://www.bnecreative.com/products/testimonials-wordpress-pro/" class="button-primary" target="_blank">View Details and Demo</a>
 						</div>
 
-						<div class="widget">
-							<h3 class="widget-title">Change Log: v<?php echo BNE_TESTIMONIALS_VERSION; ?></h3>
-							<div id="changelog">
-
-								<a href="#TB_inline?width=600&height=450&inlineId=changelog_notes" class="thickbox button-primary" title="BNE Testimonials Changelog">View Log</a>
-
-								<div id="changelog_notes" style="display:none;"><br>
 
 
-
-
-									<strong>1.7.0 ( February 7, 2015 )</strong>
-									<ul style="list-style:disc;margin-left:20px;">
-										<li>IMPORTANT CHANGE: The flexslider html div is now called bne-flexslider. This was done to prevent theme's or other plugins who also use flexslider to not throw their css onto our instance of flexslider and vice versa. Note because of this, any custom CSS edits you may have done to specifically ".bne-testimonial-slider.flexslider {...}" will need to be adjusted to match the new schema. If you used, ".bne-testimonial-slider" only, then you should be fine.</li>
-										<li>Updated internal flexslider.js to v2.2.2</li>
-										<li>New: Added Animation Speed option to slider shortcode, Ex: [bne_testimonials_slider animation_speed="500"] and to slider widget options.</li>
-										<li>New: Now localization Ready!</li>
-										<li>Tweak: Cleanup CSS</li>
-										<li>Tweak: Admin menu icon now uses the default dashicon call within register_post_type() instead of using css to output the icon.</li>
-										<li>Note: Support is only provided for WP 3.8+.</li>
-									</ul>
-
-
-									<strong>August 27, 2014 (1.6.4)</strong>
-									<ul style="list-style:disc;margin-left:20px;">
-										<li>Fix: An issue would arise on the testimonial post list where if an image was placed in the editor the table columns would shift.</li>
-										<li>Add: Sanitize the data output of the website url and tagline fields.</li>
-										<li>Compatibility Check: Works great in WP 4.0</li>
-									</ul>
-
-									<strong>May 25, 2014 (v1.6.3)</strong>
-									<ul style="list-style:disc;margin-left:20px;">
-										<li>Removed html tag limitations on get_the_content. All html tags and styles will now output normally from the visual/text editor.</li>
-										<li>Adjusted featured image support for themes that don't provide or limit certain post types from using it.</li>
-									</ul>
-
-									<p><strong><i>Previous version logs can be viewed on the plugin readme.txt file.</i></strong></p>
-
-								</div>
-							</div>
-						</div><!-- .widget (end) -->
 
 
 						<div class="widget">
-							<h3 class="widget-title">Style Classes</h3>
-							<p>If you know CSS, you can use the below classes to customize the appearance of the testimonials. They would be added to your theme's custom css area or style.css file.</p>
-							<p><strong>Global Container:</strong><br>
-								.bne-element-container
-							</p>
-							<p><strong>List View Only:</strong><br>
-								.bne-testimonial-list-wrapper<br>
-							</p>
-							<p>
-							<strong>Slider View Only:</strong><br>
-								.bne-testimonial-slider-wrapper<br>
-							</p>
-							<p>
-							<strong>Image:</strong><br>
-								.bne-testimonial-featured-image<br>
-								.bne-testimonial-featured-image.circle<br>
-								.bne-testimonial-featured-image.square<br>
-								.bne-testimonial-featured-image.flat-circle<br>
-								.bne-testimonial-featured-image.flat-square<br>
-							</p>
-							<p>
-							<strong>Heading, Content, Custom Fields:</strong><br>
-								.bne-testimonial-heading<br>
-								.bne-testimonial-tagline<br>
-								.bne-testimonial-website-url<br>
-								.bne-testimonial-description
-							</p>
-						</div><!-- .widget (end) -->
-
-						<div class="widget">
-							<h3 class="widget-title">Available Filters</h3>
-							<p>Use the following filters to add content above and/or below both the list view and slider views including above and/or below individual (single) testimonials. You would add these into your theme's functions.php file.</p>
-							<p><strong>Filters:</strong>:<br>
-							"bne_testimonials_list_above"<br>
-							"bne_testimonials_list_below"<br>
-							"bne_testimonials_list_single_above"<br>
-							"bne_testimonials_list_single_below"<br>
-							"bne_testimonials_slider_above"<br>
-							"bne_testimonials_slider_below"<br>
-							"bne_testimonials_slider_single_above"<br>
-							"bne_testimonials_slider_single_below"<br>
-							"bne_testimonials_featured_image"<br>
-							"bne_testimonials_title"<br>
-							"bne_testimonials_details"<br>
-							"bne_testimonials_the_content"<br>
-							"bne_testimonials_single_structure"
-							</p>
-
-							<p><strong>Example1:</strong></p>
-							<div style="background:#eee; padding: 2px 5px;">
-								function my_above_list() {<br>
-								&nbsp;&nbsp;&nbsp;$shortcode_output = '&lt;p>My new content.&lt;p>';<br>
-								&nbsp;&nbsp;&nbsp;return $shortcode_output;<br>
-								}<br>
-								add_filter( 'bne_testimonials_list_above', 'my_above_list' );
-							</div>
-
-
-							<p><strong>Example2:</strong></p>
-							<div style="background:#eee; padding: 2px 5px;">
-								function my_testimonial_the_content( $shortcode_output, $options ) {<br>
-								&nbsp;&nbsp;&nbsp;$shortcode_output = '&lt;p>My new content.&lt;p>';<br>
-								&nbsp;&nbsp;&nbsp;return $shortcode_output;<br>
-								}<br>
-								add_filter( 'bne_testimonials_the_content', 'my_testimonial_the_content' );
-							</div>
-
-							<p>View the <a href="http://codex.wordpress.org/Function_Reference/add_filter" target="_blank">WP Codex</a> on how to use filters.</p>
-							<p><a href="http://www.bluenotesentertainment.com/blog/bne-testimonials-filters/" class="button-primary" target="_blank">View Additional Filters</a></p>
+							<h3 class="widget-title">Other Products from BNE Creative</h3>
+							<p>Enjoy using BNE Testimonials? Checkout our other WordPress products below:</p>
+							<ul>
+								<li><a href="http://www.bnecreative.com/products/full-size-page-backgrounds-for-wordpress/" target="_blank">BNE Backstretch</a></li>
+								<li><a href="http://www.bnecreative.com/products/off-canvas-sidebar-content-for-wordpress/" target="_blank">BNE Flyouts</a></li>
+								<li><a href="http://www.bnecreative.com/products/babia-wordpress-theme/" target="_blank">Babia WordPress Theme</a></li>
+								<li><a href="http://www.bnecreative.com/products/natista-wordpress-theme/" target="_blank">Natista WordPress Theme</a></li>
+								<li><a href="http://www.bnecreative.com/products/careclinic-medical-wordpress-theme/" target="_blank">CareClinic WordPress Theme</a></li>
+							</ul>
 						</div><!-- .widget (end) -->
 
 					</div><!-- .span-one-third (end) -->

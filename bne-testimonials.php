@@ -1,15 +1,15 @@
 <?php
 /*
  * Plugin Name: BNE Testimonials
- * Version: 1.7.0
- * Plugin URI: http://www.bluenotesentertainment.com/blog/new-testimonial-plugin-for-wordpress/
+ * Version: 1.7.1
+ * Plugin URI: http://www.bnecreative.com/blog/new-testimonial-plugin-for-wordpress/
  * Description: Adds a Custom Post Type to display Testimonials on any page, post, or sidebar. Display the testimonials as a list or slider powered by Flexslider. Shortcodes: [bne_testimonials_list] & [bne_testimonials_slider]. Includes corresponding widget options.
- * Author: Kerry Kline, Bluenotes Entertainment
- * Author URI: http://www.bluenotesentertainment.com
+ * Author: Kerry Kline, BNE Creative
+ * Author URI: http://www.bnecreative.com
  * Requires at least: 3.8
  * License: GPL2
 
-    Copyright 2013-2015  Bluenotes Entertainment
+    Copyright 2013-2015  BNE Creative
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License version 2,
@@ -37,7 +37,7 @@ if ( !defined('ABSPATH') ) exit;
  *	Plugin Constants and Localization
  * ======================================================== */
 
-define( 'BNE_TESTIMONIALS_VERSION', '1.7.0' );
+define( 'BNE_TESTIMONIALS_VERSION', '1.7.1' );
 define( 'BNE_TESTIMONIALS_DIR', dirname( __FILE__ ) );
 define( 'BNE_TESTIMONIALS_URI', plugins_url( '', __FILE__ ) );
 define( 'BNE_TESTIMONIALS_BASENAME', plugin_basename( __FILE__ ) );
@@ -269,17 +269,15 @@ function bne_testimonials_details( $options ) {
 
 
 /*
- *	Testimonial Post Content Output
+ *	Testimonial Content
  *
- *	@param $options - Pulls in Array
- *
- *	@since v1.1
- *	@updated May 23 2014
+ *	@since 		v1.1.0
+ *	@updated	v1.7.0
 */
 function bne_testimonials_the_content( $options ) {
 
 	// Format the Content
-	$get_content = wpautop( get_the_content() );
+	$get_content = wpautop( do_shortcode( get_the_content() ) );
 
 	$shortcode_output = '<div class="bne-testimonial-description">'.$get_content.'</div>';
 
