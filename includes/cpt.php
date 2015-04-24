@@ -236,7 +236,7 @@ function bne_testimonials_details_metabox_fields() {
 				<th scope="row" valign="top" style="width: 30%;">
 					<label for="tagline"><?php echo __('Tagline or Company Name:', 'bne-testimonials');?></label>
 				</th>
-				<?php $tagline = ( get_post_meta( $post->ID, 'tagline', true ) ) ? get_post_meta( $post->ID, 'tagline', true ) : ''; ?>
+				<?php $tagline = ( esc_html( get_post_meta( $post->ID, 'tagline', true ) ) ) ? esc_html( get_post_meta( $post->ID, 'tagline', true ) ) : ''; ?>
 				<td>
 					<input type="text" id="tagline" name="rc_wctg_meta_field[tagline]" value="<?php echo $tagline; ?>">
 					<span class="description" style="display:block;">
@@ -248,7 +248,7 @@ function bne_testimonials_details_metabox_fields() {
 				<th scope="row" valign="top" style="width: 30%;">
 					<label for="website-url"><?php echo __('Website URL:', 'bne-testimonials');?></label>
 				</th>
-				<?php $website_url = ( get_post_meta( $post->ID, 'website-url', true ) ) ? get_post_meta( $post->ID, 'website-url', true ) : ''; ?>
+				<?php $website_url = ( esc_url( get_post_meta( $post->ID, 'website-url', true ) ) ) ? esc_url( get_post_meta( $post->ID, 'website-url', true ) ) : ''; ?>
 				<td>
 					<input type="text" id="website-url" name="rc_wctg_meta_field[website-url]" value="<?php echo $website_url; ?>">
 					<span class="description" style="display:block;">

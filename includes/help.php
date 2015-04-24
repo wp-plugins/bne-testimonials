@@ -286,6 +286,11 @@ function bne_testimonial_admin_help_page() {
 
 							<div id="changelog_notes" style="display:none;">
 
+								<strong>1.7.1.1 Pro ( April 23, 2015 )</strong>
+								<ul style="list-style:disc;margin-left:20px;">
+									<li>Security - Add additional sanitization checks on output. No threats were reported. This is just a precaution due to recent events with other plugins/themes regarding the XSS vulnerability.</li>
+								</ul>
+
 								<strong>1.7.1 ( March 7, 2015 )</strong>
 								<ul style="list-style:disc;margin-left:20px;">
 									<li>Fix: flexslider.js with mobile firefox</li>
@@ -345,10 +350,14 @@ function bne_testimonial_admin_help_page() {
 
 						<div class="widget">
 							<h3 class="widget-title">Other Products from BNE Creative</h3>
-							<p>Enjoy using BNE Testimonials? Checkout our other WordPress products below:</p>
+							<p>Enjoy using BNE Testimonials PRO? Checkout our other WordPress products below:</p>
+							<strong>WP Plugins</strong>
 							<ul>
 								<li><a href="http://www.bnecreative.com/products/full-size-page-backgrounds-for-wordpress/" target="_blank">BNE Backstretch</a></li>
 								<li><a href="http://www.bnecreative.com/products/off-canvas-sidebar-content-for-wordpress/" target="_blank">BNE Flyouts</a></li>
+							</ul>
+							<strong>WP Themes</strong>
+							<ul>
 								<li><a href="http://www.bnecreative.com/products/babia-wordpress-theme/" target="_blank">Babia WordPress Theme</a></li>
 								<li><a href="http://www.bnecreative.com/products/natista-wordpress-theme/" target="_blank">Natista WordPress Theme</a></li>
 								<li><a href="http://www.bnecreative.com/products/careclinic-medical-wordpress-theme/" target="_blank">CareClinic WordPress Theme</a></li>

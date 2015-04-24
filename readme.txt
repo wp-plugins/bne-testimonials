@@ -3,8 +3,8 @@ Author URI: http://www.bnecreative.com
 Contributors: bluenotes
 Tags: testimonials, flexslider, feedback, reviews
 Requires at least: 3.8
-Tested up to: 4.1.1
-Stable tag: 1.7.1
+Tested up to: 4.2
+Stable tag: 1.7.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -77,6 +77,10 @@ Possible, but most likely not in the free version. If you would like to see new 
 
 
 == Changelog ==
+
+= 1.7.1.1 ( April 23, 2015 ) =
+* Security: Add additional sanitization checks on output. This is just a precaution due to recent events with other plugins/themes regarding the XSS vulnerability.
+
 
 = 1.7.1 ( March 7, 2015 ) =
 * Fix: flexslider.js with mobile firefox
