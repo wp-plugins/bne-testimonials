@@ -350,7 +350,7 @@ function bne_testimonial_admin_help_page() {
 
 						<div class="widget">
 							<h3 class="widget-title">Other Products from BNE Creative</h3>
-							<p>Enjoy using BNE Testimonials PRO? Checkout our other WordPress products below:</p>
+							<p>Enjoy using BNE Testimonials? Checkout our other WordPress products below:</p>
 							<strong>WP Plugins</strong>
 							<ul>
 								<li><a href="http://www.bnecreative.com/products/full-size-page-backgrounds-for-wordpress/" target="_blank">BNE Backstretch</a></li>
