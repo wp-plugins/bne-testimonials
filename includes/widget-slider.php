@@ -8,7 +8,7 @@
  * 	@copyright	Copyright (c) 2013-2015, Kerry Kline
  * 	@link		http://www.bnecreative.com
  *
- *	@updated: 	February 11, 2015
+ *	@updated: 	August 19, 2015
 */
 
 
@@ -19,7 +19,7 @@ class bne_testimonials_slider_widget extends WP_Widget {
 
 	// Constructor
 	function bne_testimonials_slider_widget() {
-		parent::WP_Widget(
+		parent::__construct(
 			false,
 			$name = __('BNE Testimonial Slider', 'bne-testimonials'),
 			array( 'description' => __('Display your testimonials using as a slider.', 'bne-testimonials') ),
